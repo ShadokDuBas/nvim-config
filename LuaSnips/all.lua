@@ -27,4 +27,4 @@ local test = {
 }
 
 
-return test
+return {}
