@@ -267,10 +267,10 @@ local snips = {
       updateevents = "TextChanged,TextChangedI",
     })
     local ls = require("luasnip")
-    vim.keymap.set({"i"}, "<C-r>", function() ls.expand() end, {silent = true})
-    vim.keymap.set({"i", "s"}, "<C-r>", function() ls.jump( 1) end, {silent = true})
-    vim.keymap.set({"i", "s"}, "<C-t>", function() ls.jump(-1) end, {silent = true})
-    vim.keymap.set({"i", "s"}, "<C-i>", function()
+    vim.keymap.set({"n"}, "<leader>n", function() ls.expand() end, {silent = true})
+    vim.keymap.set({"n", "s"}, "<leader>n", function() ls.jump( 1) end, {silent = true})
+    vim.keymap.set({"n", "s"}, "<leader>p", function() ls.jump(-1) end, {silent = true})
+    vim.keymap.set({"n", "s"}, "<leader>c", function()
       if ls.choice_active() then
         ls.change_choice(1)
       end
@@ -278,6 +278,8 @@ local snips = {
     require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnips/"})
   end,
 }
+
+
 
 -- Org-mode
 local orgmode = {
