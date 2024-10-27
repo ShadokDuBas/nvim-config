@@ -139,6 +139,8 @@ local minis = { 'echasnovski/mini.nvim',
     scroll = {enable=false},})
     -- Icon provider
     require("mini.icons").setup()
+
+    require("mini.align").setup()
   end,}
 
 -- flash : sauteeeer
