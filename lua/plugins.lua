@@ -263,7 +263,7 @@ local snips = {
   config = function()
     require("luasnip").config.set_config({
       enable_autosnippets = true,
-      store_selection_keys = "<Tab>",
+      --store_selection_keys = "<Tab>",
       updateevents = "TextChanged,TextChangedI",
     })
     local ls = require("luasnip")
@@ -303,6 +303,7 @@ local orgmode = {
           org_agenda_goto_today = {'.', 'T'},
           org_agenda_priority_up = nil,
           org_agenda_priority_down = nil,
+          org_agenda_todo = {"t", "<leader>ot"},
         },
         capture = {
           org_capture_finalize = '<Leader>w',
