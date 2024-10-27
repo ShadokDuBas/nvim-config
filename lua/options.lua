@@ -88,3 +88,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- considérer que tex = latex
 vim.g.tex_flavor = "latex"
+
+-- autoriser les concealers
+vim.opt.conceallevel = 2
