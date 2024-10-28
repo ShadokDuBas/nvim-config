@@ -269,14 +269,14 @@ local snips = {
       updateevents = "TextChanged,TextChangedI",
     })
     local ls = require("luasnip")
-    vim.keymap.set({"n"}, "<leader>n", function() ls.expand() end, {silent = true})
-    vim.keymap.set({"n", "s"}, "<leader>n", function() ls.jump( 1) end, {silent = true})
-    vim.keymap.set({"n", "s"}, "<leader>p", function() ls.jump(-1) end, {silent = true})
+    vim.keymap.set({"n"}, "<leader>n", function() ls.expand() end, {silent = true, desc="expand snippet"})
+    vim.keymap.set({"n", "s"}, "<leader>n", function() ls.jump( 1) end, {silent = true, desc="snippet jump"})
+    vim.keymap.set({"n", "s"}, "<leader>p", function() ls.jump(-1) end, {silent = true, desc="back. snippet jump"})
     vim.keymap.set({"n", "s"}, "<leader>c", function()
       if ls.choice_active() then
         ls.change_choice(1)
       end
-    end, {silent = true})
+    end, {silent = true,desc="snippet select"})
     require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnips/"})
   end,
 }
