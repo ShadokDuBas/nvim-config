@@ -14,88 +14,17 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Themes :
 
-local kanagawa = { 
-    "rebelot/kanagawa.nvim",
-    config = function()
-      vim.cmd.colorscheme("kanagawa")
-    end,
-  }
+local kanagwa = require("plug_list.kanagwa")
 
 -- Treesitter
-local treesitter = {
-    "nvim-treesitter/nvim-treesitter",
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = 
-          { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "markdown_inline",
-          --"latex" 
-          },
-        auto_install = true,
-        disable = {'org'},
-        ignore_install = { 'org' },
-        highlight = { enable = true },
-        indent = { enable = true },
-        fold = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<Leader>v",
-            node_incremental = "<Leader>i",
-            node_decremental = "<Leader>d"
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            -- Automatically jump forward to textobj, similar to targets.vim
-            lookahead = true,
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              -- You can optionally set descriptions to the mappings (used in the desc parameter of
-              -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-              -- You can also use captures from other query groups like `locals.scm`
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
-            },
-            -- You can choose the select mode (default is charwise 'v')
-            --
-            -- Can also be a function which gets passed a table with the keys
-            -- * query_string: eg '@function.inner'
-            -- * method: eg 'v' or 'o'
-            -- and should return the mode ('v', 'V', or '<c-v>') or a table
-            -- mapping query_strings to modes.
-            selection_modes = {
-              ['@parameter.outer'] = 'v', -- charwise
-              ['@function.outer'] = 'V', -- linewise
-              ['@class.outer'] = '<c-v>', -- blockwise
-            },
-            -- If you set this to `true` (default is `false`) then any textobject is
-            -- extended to include preceding or succeeding whitespace. Succeeding
-            -- whitespace has priority in order to act similarly to eg the built-in
-            -- `ap`.
-            --
-            -- Can also be a function which gets passed a table with the keys
-            -- * query_string: eg '@function.inner'
-            -- * selection_mode: eg 'v'
-            -- and should return true or false
-            include_surrounding_whitespace = true,
-          },
-        },
-      })
-    vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-    end,
-  }
+local treesitter = require("plug_list.treesitter")
 
 local treesitter_textobjects = {"nvim-treesitter/nvim-treesitter-textobjects"}
 
 -- fugitive : manipuler git
 local fugitive = {"tpope/vim-fugitive"}
 
--- focus : resize windows on the fly
+-- focus : resize windows automatically
 local focus = { 
   'nvim-focus/focus.nvim',
   version = false,
@@ -139,36 +68,12 @@ local minis = { 'echasnovski/mini.nvim',
     scroll = {enable=false},})
     -- Icon provider
     require("mini.icons").setup()
-
+    -- use ga<object>s to align arround char s
     require("mini.align").setup()
   end,}
 
 -- flash : sauteeeer
-local flash = {
-  "folke/flash.nvim",
-  event = "VeryLazy",
-  ---@type Flash.Config
-  opts = {},
-  -- stylua: ignore
-  keys = {
-    { "<leader><leader>", mode = { "n", "x", "o" }, function()
-      require("flash").jump() end, desc = "Flash" },
-    { "S", mode = { "n", "x", "o" }, function()
-      require("flash").treesitter() end, desc = "Flash Treesitter" },
-    { "r", mode = "o", function()
-      require("flash").remote() end, desc = "Remote Flash" },
-    { "R", mode = { "o", "x" }, function()
-      require("flash").treesitter_search() end, desc = "Treesitter Search" },
-    { "<c-s>", mode = { "c" }, function()
-      require("flash").toggle() end, desc = "Toggle Flash Search" },
-  },
-
-  config = function()
-    require("flash").setup({
-      highlight = {matches = false,},
-    })
-  end,
-}
+local flash = require("plug_list.flash")
 
 -- lualine : status line
 local lualine = {
@@ -182,27 +87,7 @@ local lualine = {
 
 
 -- neorg : org tool
-local neorg = {
-  "nvim-neorg/neorg",
-  lazy = false, -- Disable lazy loading as some `lazy.nvim` distributions set `lazy = true` by default
-  version = "*", -- Pin Neorg to the latest stable release
-  config = true,
-  build = ":Neorg sync-parsers",
-  opts = {
-    load = {
-      ["core.defaults"] = {}, -- Loads default behaviour
-      ["core.concealer"] = {}, -- Adds pretty icons to your documents
-      ["core.dirman"] = { -- Manages Neorg workspaces
-        config = {
-          workspaces = {
-            journal = "~/journal",
-          },
-          default_workspace = "journal",
-        },
-      },
-    },
-  },
-  }
+-- local neorg = require("plug_list.neorg")
 
 
 -- nvim-notify : notifications
@@ -214,35 +99,10 @@ local notif = {
 }
 
 -- pomo : timers
-local pomodoro = {
-  "epwalsh/pomo.nvim",
-  version = "*",  -- Recommended, use latest release instead of latest commit
-  lazy = true,
-  cmd = { "TimerStart", "TimerRepeat", "TimerSession" },
-  dependencies = {
-    -- Optional, but highly recommended if you want to use the "Default" timer
-    "rcarriga/nvim-notify",
-  },
-  opts = {
-  },
-}
+local pomodoro = require("plug_list.pomodoro")
 
 -- Noice : remake the ui of vim
-local nice = {
-  "folke/noice.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- add any options here
-  },
-  dependencies = {
-    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-    "MunifTanjim/nui.nvim",
-    -- OPTIONAL:
-    --   `nvim-notify` is only needed, if you want to use the notification view.
-    --   If not available, we use `mini` as the fallback
-    -- "rcarriga/nvim-notify",
-    },
-}
+-- local nice = require("plug_list.nice")
 
 -- markview : md renderer
 local md = {
@@ -256,178 +116,13 @@ local md = {
 }
 
 -- luasnips : faire des snippets
-local snips = {
-	"L3MON4D3/LuaSnip",
-	-- follow latest release.
-	version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-	-- install jsregexp (optional!). (opted out)
-	-- build = "make install_jsregexp"
-  config = function()
-    require("luasnip").config.set_config({
-      enable_autosnippets = true,
-      --store_selection_keys = "<Tab>",
-      updateevents = "TextChanged,TextChangedI",
-    })
-    local ls = require("luasnip")
-    vim.keymap.set({"n"}, "<leader>n", function() ls.expand() end, {silent = true, desc="expand snippet"})
-    vim.keymap.set({"n", "s"}, "<leader>n", function() ls.jump( 1) end, {silent = true, desc="snippet jump"})
-    vim.keymap.set({"n", "s"}, "<leader>p", function() ls.jump(-1) end, {silent = true, desc="back. snippet jump"})
-    vim.keymap.set({"n", "s"}, "<leader>c", function()
-      if ls.choice_active() then
-        ls.change_choice(1)
-      end
-    end, {silent = true,desc="snippet select"})
-    require("luasnip.loaders.from_lua").lazy_load({paths = "~/.config/nvim/LuaSnips/"})
-  end,
-}
+local snips = require("plug_list.luasnip")
 
 -- Telescope : fuzzy finder
-local telsc =   { -- Fuzzy Finder (files, lsp, etc)
-    "nvim-telescope/telescope.nvim",
-    event = "VeryLazy",
-    branch = "0.1.x",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      { -- If encountering errors, see telescope-fzf-native README for install instructions
-        "nvim-telescope/telescope-fzf-native.nvim",
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        build = "make",
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        cond = function()
-          return vim.fn.executable("make") == 1
-        end,
-      },
-      { "nvim-telescope/telescope-ui-select.nvim" },
-
-      -- Useful for getting pretty icons, but requires special font.
-      --  If you already have a Nerd Font, or terminal set up with fallback fonts
-      --  you can enable this
-      -- { 'nvim-tree/nvim-web-devicons' }
-    },
-    config = function()
-      -- Telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! It's more than just a "file finder", it can search
-      -- many different aspects of Neovim, your workspace, LSP, and more!
-      --
-      -- The easiest way to use telescope, is to start by doing something like:
-      --  :Telescope help_tags
-      --
-      -- After running this command, a window will open up and you're able to
-      -- type in the prompt window. You'll see a list of help_tags options and
-      -- a corresponding preview of the help.
-      --
-      -- Two important keymaps to use while in telescope are:
-      --  - Insert mode: <c-/>
-      --  - Normal mode: ?
-      --
-      -- This opens a window that shows you all of the keymaps for the current
-      -- telescope picker. This is really useful to discover what Telescope can
-      -- do as well as how to actually do it!
-
-      -- [[ Configure Telescope ]]
-      -- See `:help telescope` and `:help telescope.setup()`
-      require("telescope").setup({
-        -- You can put your default mappings / updates / etc. in here
-        --  All the info you're looking for is in `:help telescope.setup()`
-        --
-        -- defaults = {
-        --   mappings = {
-        --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-        --   },
-        -- },
-        -- pickers = {}
-        extensions = {
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown(),
-          },
-        },
-      })
-
-      -- Enable telescope extensions, if they are installed
-      pcall(require("telescope").load_extension, "fzf")
-      pcall(require("telescope").load_extension, "ui-select")
-
-      -- See `:help telescope.builtin`
-      local builtin = require("telescope.builtin")
-      vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-      vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-      vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
-      vim.keymap.set("n", "<leader>ss", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-      vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-      vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch by [G]rep" })
-      vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-      vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
-      vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-      vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
-
-      -- Slightly advanced example of overriding default behavior and theme
-      vim.keymap.set("n", "<leader>/", function()
-        -- You can pass additional configuration to telescope to change theme, layout, etc.
-        builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
-          winblend = 10,
-          previewer = false,
-        }))
-      end, { desc = "[/] Fuzzily search in current buffer" })
-
-      -- Also possible to pass additional configuration options.
-      --  See `:help telescope.builtin.live_grep()` for information about particular keys
-      vim.keymap.set("n", "<leader>s/", function()
-        builtin.live_grep({
-          grep_open_files = true,
-          prompt_title = "Live Grep in Open Files",
-        })
-      end, { desc = "[S]earch [/] in Open Files" })
-
-      -- Shortcut for searching your neovim configuration files
-      vim.keymap.set("n", "<leader>sn", function()
-        builtin.find_files({ cwd = vim.fn.stdpath("config") })
-      end, { desc = "[S]earch [N]eovim files" })
-    end,
-  }
+local telsc =   require("plug_list.telesc")
 
 -- Org-mode
-local orgmode = {
-  'nvim-orgmode/orgmode',
-  event = 'VeryLazy',
-  ft = { 'org' },
-  config = function()
-    -- Setup orgmode
-    require('orgmode').setup({
-      org_agenda_files = '~/orgfiles/*',
-      org_default_notes_file = '~/orgfiles/refile.org',
-      win_split_mode = "vertical",
-      org_capture_templates =
-        { t = { description = 'Task', template = '* TODO %?\n  %u' },
-          s = { 
-            description = "schedule", 
-            template = "* %?\n  SCHEDULED: %^{date}T\n  %u"},
-        },
-      mappings = {
-        agenda = {
-          org_agenda_later = '>',
-          org_agenda_earlier = '<',
-          org_agenda_goto_today = {'.', 'T'},
-          org_agenda_priority_up = nil,
-          org_agenda_priority_down = nil,
-          org_agenda_todo = {"t", "<leader>ot"},
-        },
-        capture = {
-          org_capture_finalize = '<Leader>w',
-        }
-      },
-    })
-    -- NOTE: If you are using nvim-treesitter with ~ensure_installed = "all"~ option
-    -- add ~org~ to ignore_install
-    -- require('nvim-treesitter.configs').setup({
-    --   ensure_installed = 'all',
-    --   ignore_install = { 'org' },
-    -- })
-  end,
-}
+local orgmode = require("plug_list.orgmode")
 
 
 -- liste des plugins à rajouter :
@@ -438,7 +133,7 @@ local orgmode = {
 -- folke/noice.nvim
 
 require("lazy").setup({
-  kanagawa,
+  kanagwa,
   treesitter,
   treesitter_textobjects,
   fugitive,
