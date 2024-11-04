@@ -25,33 +25,10 @@ local treesitter_textobjects = {"nvim-treesitter/nvim-treesitter-textobjects"}
 local fugitive = {"tpope/vim-fugitive"}
 
 -- focus : resize windows automatically
-local focus = { 
-  'nvim-focus/focus.nvim',
-  version = false,
-  config = function()
-    require("focus").setup()
-  end,
-}
+local focus = require("plug_list.focus")
 
 -- which-key : keymaps reminder
-local which_key = {
-  "folke/which-key.nvim",
-  event = "VeryLazy",
-  opts = {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  },
-  keys = {
-    {
-      "<leader>?",
-      function()
-        require("which-key").show({ global = false })
-      end,
-      desc = "Buffer Local Keymaps (which-key)",
-    },
-  },
-}
+local which_key = require("plug_list.whichkey")
 
 -- mini.nvim : petits plugins variés
 local minis = { 'echasnovski/mini.nvim', 
@@ -76,14 +53,7 @@ local minis = { 'echasnovski/mini.nvim',
 local flash = require("plug_list.flash")
 
 -- lualine : status line
-local lualine = {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
-  config = function()
-    require("lualine").setup({
-    })
-  end,
-}
+local lualine = require("plug_list.lualine")
 
 
 -- neorg : org tool
@@ -91,12 +61,7 @@ local lualine = {
 
 
 -- nvim-notify : notifications
-local notif = {
-  "rcarriga/nvim-notify",
-  config = function()
-    vim.notify = require("notify")
-  end,
-}
+local notif = require("plug_list.notif")
 
 -- pomo : timers
 local pomodoro = require("plug_list.pomodoro")
@@ -105,15 +70,7 @@ local pomodoro = require("plug_list.pomodoro")
 -- local nice = require("plug_list.nice")
 
 -- markview : md renderer
-local md = {
-    "OXY2DEV/markview.nvim",
-    lazy = false,      -- Recommended
-    -- ft = "markdown" -- If you decide to lazy-load anyway
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-        "nvim-tree/nvim-web-devicons"
-    }
-}
+local md = require("plug_list.markview")
 
 -- luasnips : faire des snippets
 local snips = require("plug_list.luasnip")
