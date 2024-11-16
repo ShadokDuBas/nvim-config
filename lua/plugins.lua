@@ -81,6 +81,8 @@ local telsc =   require("plug_list.telesc")
 -- Org-mode
 local orgmode = require("plug_list.orgmode")
 
+local vimtex = require("plug_list.vimtex")
+
 
 -- liste des plugins à rajouter :
 -- oil ? mini.files ?
@@ -107,5 +109,6 @@ require("lazy").setup({
   snips,
   orgmode,
   telsc,
+  --vimtex,
 })
 
