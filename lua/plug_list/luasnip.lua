@@ -11,10 +11,11 @@ return {
       updateevents = "TextChanged,TextChangedI",
     })
     local ls = require("luasnip")
-    vim.keymap.set({"n"}, "<leader>n", function() ls.expand() end, {silent = true, desc="expand snippet"})
-    vim.keymap.set({"n", "s"}, "<leader>n", function() ls.jump( 1) end, {silent = true, desc="snippet jump"})
-    vim.keymap.set({"n", "s"}, "<leader>p", function() ls.jump(-1) end, {silent = true, desc="back. snippet jump"})
-    vim.keymap.set({"n", "s"}, "<leader>c", function()
+    vim.keymap.set({'n', 'i'}, '<C-space>', "")
+    vim.keymap.set({"i"}, "<C-space>", function() ls.expand() end, {silent = true, desc="expand snippet"})
+    vim.keymap.set({"i", "s"}, "<C-space>", function() ls.jump( 1) end, {silent = true, desc="snippet jump"})
+    vim.keymap.set({"i", "s"}, "<C-l>", function() ls.jump(-1) end, {silent = true, desc="back. snippet jump"})
+    vim.keymap.set({"i", "s"}, "<C-k>", function()
       if ls.choice_active() then
         ls.change_choice(1)
       end
