@@ -83,6 +83,24 @@ local orgmode = require("plug_list.orgmode")
 
 local vimtex = require("plug_list.vimtex")
 
+-- Dashboard
+local snacks ={
+  "folke/snacks.nvim",
+  priority = 1001,
+  lazy = false,
+  opts = {
+    -- desactivates parser/lsp on big files
+    bigfile = { enabled = true },
+    -- cute notifications
+    notifier = { enabled = true },
+    -- render the file quicker
+    quickfile = { enabled = true },
+    -- statuscolumn = { enabled = true },
+  dashboard = require("plug_list.dashboard"),
+  },
+  }
+
+
 
 -- liste des plugins à rajouter :
 -- oil ? mini.files ?
@@ -102,7 +120,7 @@ require("lazy").setup({
   flash,
   lualine,
   --neorg,
-  notif,
+  -- notif,
   pomodoro,
   --nice,
   md,
@@ -110,5 +128,6 @@ require("lazy").setup({
   orgmode,
   telsc,
   --vimtex,
+  snacks,
 })
 
