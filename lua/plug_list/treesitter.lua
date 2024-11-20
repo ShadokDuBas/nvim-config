@@ -7,8 +7,8 @@ return {
           --"latex" 
           },
         auto_install = true,
-        disable = {'org'},
-        ignore_install = { 'org' },
+        disable = {'org', "latex"},
+        ignore_install = { 'org', "latex"},
         highlight = { enable = true },
         indent = { enable = true },
         fold = { enable = true },
