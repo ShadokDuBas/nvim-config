@@ -61,7 +61,7 @@ local lualine = require("plug_list.lualine")
 
 
 -- nvim-notify : notifications
-local notif = require("plug_list.notif")
+-- local notif = require("plug_list.notif")
 
 -- pomo : timers
 local pomodoro = require("plug_list.pomodoro")
@@ -127,7 +127,7 @@ require("lazy").setup({
   snips,
   orgmode,
   telsc,
-  --vimtex,
+  vimtex,
   snacks,
 })
 
