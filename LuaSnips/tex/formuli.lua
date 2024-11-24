@@ -56,12 +56,31 @@ local envir = s({trig=".beg", snippetType="autosnippet"},
     }
   ),
   {condition = line_begin}
-),
+)
 
+local figure = s({trig=".fig", snippetType="autosnippet", dscr="figure"},
+    fmta(
+        [[
+        \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{<>}
+        \caption{
+            <>
+            }
+        \label{fig:<>}
+        \end{figure}
+
+        ]],
+        { i(1,"filename"),
+          i(2, "captionText"),
+          i(3,"figureLabel"),}
+    )
+),
 
 table.insert(snips, commande)
 table.insert(snips, itemize)
 table.insert(snips, enumerate)
 table.insert(snips, envir)
+table.insert(snips, figure)
 
 return snips
