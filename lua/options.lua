@@ -91,3 +91,6 @@ vim.g.tex_flavor = "latex"
 
 -- autoriser les concealers
 vim.opt.conceallevel = 2
+
+-- fermer le buffer sans fermer la fenêtre
+vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>", {desc = "[q]uit buffer, but keep window"})
