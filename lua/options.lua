@@ -15,7 +15,7 @@ vim.opt.wrap = false
 -- ligne à 80 chars
 vim.opt.textwidth = 80
 
--- Tab shenanigans
+-- Tabulations shenanigans
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -58,7 +58,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
--- Signcolumn, used to display signs
+-- Signcolumn, used to display signs(???)
 vim.opt.signcolumn = "yes"
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
@@ -75,8 +75,7 @@ vim.keymap.set("n", "<C-right>", "<C-w><C-l>", { desc = "Move focus to the right
 vim.keymap.set("n", "<C-down>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-up>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
+-- Highlight when yanking text
 --  See `:help vim.highlight.on_yank()`
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
@@ -89,8 +88,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- considérer que tex = latex
 vim.g.tex_flavor = "latex"
 
--- autoriser les concealers
-vim.opt.conceallevel = 2
+-- ne pas autoriser le concealer latex
+-- le plugin Markview.lua remet cette option à 2 quand on ouvre
+-- un fichier md.
+vim.opt.conceallevel = 0
 
 -- fermer le buffer sans fermer la fenêtre
-vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>", {desc = "[q]uit buffer, but keep window"})
+vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>", 
+  {desc = "[q]uit buffer, but keep window"})
+
+-- Chercher-remplacer le mot sous le curseur
+vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], 
+  {desc = "search and [R]eplace word under cursor"})
