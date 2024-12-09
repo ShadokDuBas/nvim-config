@@ -17,6 +17,14 @@ local fun = function(_, snip)
   return snip.captures[1]
 end
 
+local open_close = 
+s({trig= "{", snippetType="autosnippet", wordTrig = false},
+  fmta(
+    [[{<>}]],
+    {i(1)}
+  )
+)
+
 local subscript = 
 s({trig = '_([^_ %^{}]-)}', snippetType="autosnippet", regTrig = true, wordTrig = false},
   fmta(
@@ -41,6 +49,7 @@ s({trig = '%^([^_ %^{}]-)}', snippetType="autosnippet", regTrig = true, wordTrig
 
 table.insert(snips, subscript)
 table.insert(snips, supscript)
+table.insert(snips, open_close)
 
 
 return snips
