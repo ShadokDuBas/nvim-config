@@ -1,9 +1,12 @@
+local opts ={
+    preset = "helix",
+  }
+
+
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  opts = {
-    preset = "helix",
-  },
+  opts = opts,
   keys = {
     {
       "<leader>?",
@@ -13,10 +16,13 @@ return {
       desc = "Buffer Local Keymaps (which-key)",
     },
   },
-  -- config = function()
-  --   require("which-key").add({
-  --     {"<leader>o", group="Org-mode", icon= ""},
-  --     {"<leader>s", group="Telescope", icon= " "},
-  --   })
-  -- end,
+  config = function()
+    require("which-key").setup(opts)
+    require("which-key").add({
+      {"<leader>o", group="Org-mode", icon= ""},
+      {"<leader>s", group="Telescope", icon= " "},
+      {"ZZ", desc="Save and quit"},
+      {"ZQ", desc="Force [Q]uit"},
+    })
+  end,
 }
