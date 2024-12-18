@@ -21,6 +21,7 @@ return {
     require("which-key").add({
       {"<leader>o", group="Org-mode", icon= ""},
       {"<leader>s", group="Telescope", icon= " "},
+      {"<leader>w", proxy="<c-w>", group="Windows"},
       {"ZZ", desc="Save and quit"},
       {"ZQ", desc="Force [Q]uit"},
     })
