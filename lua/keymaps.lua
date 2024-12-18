@@ -49,3 +49,10 @@ vim.keymap.set("n", "<leader>z",
     end
   end, 
   {desc="activate zen mode"})
+
+-- Duplicate a line and comment out the first line
+vim.keymap.set("n", "yc", "yygccp", {desc="[Y]dupplicate > [C]omment"})
+
+-- Write
+-- Note that ZZ is save and close (:x) and ZQ is :q!
+vim.keymap.set("n", "ZX", ":w<CR>", {desc="Save"})
