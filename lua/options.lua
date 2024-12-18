@@ -100,3 +100,15 @@ vim.keymap.set("n", "<leader>q", ":bp<bar>sp<bar>bn<bar>bd<CR>",
 -- Chercher-remplacer le mot sous le curseur
 vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]], 
   {desc = "search and [R]eplace word under cursor"})
+
+-- zen mode
+vim.keymap.set("n", "<leader>z", 
+  function() 
+    local ok, snack = pcall(require, "snacks") 
+    if not ok then
+      vim.notify("erreur dans le module zen :")
+      vim.notify(snack)
+    else snack.zen.zen()
+    end
+  end, 
+  {desc="activate zen mode"})

@@ -47,6 +47,8 @@ local minis = { 'echasnovski/mini.nvim',
     require("mini.icons").setup()
     -- use ga<object>s to align arround char s
     require("mini.align").setup()
+    -- show the scope
+    -- require("mini.indentscope").setup()
   end,}
 
 -- flash : sauteeeer
@@ -83,7 +85,7 @@ local orgmode = require("plug_list.orgmode")
 
 local vimtex = require("plug_list.vimtex")
 
--- Dashboard
+-- Dashboard and other bonuses
 local snacks ={
   "folke/snacks.nvim",
   priority = 1001,
@@ -96,7 +98,10 @@ local snacks ={
     -- render the file quicker
     quickfile = { enabled = true },
     -- statuscolumn = { enabled = true },
-  dashboard = require("plug_list.dashboard"),
+    dashboard = require("plug_list.dashboard"),
+    zen = { enabled = true },
+    -- show indent line (maybe bugged)
+    -- indent = {enabled = true}
   },
   }
 
