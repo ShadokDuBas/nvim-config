@@ -105,18 +105,13 @@ local snacks ={
     dashboard = require("plug_list.dashboard"),
     zen = { enabled = true },
     -- show indent line (maybe bugged)
-    -- indent = {enabled = true}
+    indent = {enabled = true}
   },
   }
 
-
-
 -- liste des plugins à rajouter :
 -- oil ? mini.files ?
--- luasnips / autocomplete ?
--- telescope
--- vim-latex ?
--- folke/noice.nvim
+-- cmp ? Blink ?
 
 require("lazy").setup({
   kanagwa,
