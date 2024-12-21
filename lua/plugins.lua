@@ -47,6 +47,10 @@ local minis = { 'echasnovski/mini.nvim',
     require("mini.icons").setup()
     -- use ga<object>s to align arround char s
     require("mini.align").setup()
+    -- Substitution, exchange and execution operators
+    require("mini.operators").setup()
+    -- Split the argument and join them
+    require("mini.splitjoin").setup()
     -- show the scope
     -- require("mini.indentscope").setup()
   end,}
