@@ -61,4 +61,5 @@ vim.keymap.set("n", "yc", "yygccp", {desc="[Y]dupplicate > [C]omment", remap=tru
 -- Write
 vim.keymap.set("n", "ZX", "<cmd>w<CR>", {desc="Save"})
 -- Split
-vim.keymap.set("n", "ZS", "<cmd>vs<CR>", {desc="Vertical [S]plit"})
+vim.keymap.set("n", "ZS", "<cmd>split<CR>", {desc="Horizontal [S]plit"})
+vim.keymap.set("n", "ZV", "<cmd>vs<CR>", {desc="[V]ertical split"})
