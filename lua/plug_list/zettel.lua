@@ -7,5 +7,6 @@ return {
     vim.keymap.set("n", "<leader>zi", "<cmd>ZkInsertLink<cr>", {desc="[Z]k [I]nsert link"})
     vim.keymap.set("n", "<leader>zn", "<cmd>ZkLinks<cr>", {desc="[Z]k [N]ext"})
     vim.keymap.set("n", "<leader>zp", "<cmd>ZkBacklinks<cr>", {desc="[Z]k [P]revious"})
+    vim.keymap.set("v", "<leader>zi", ":'<,'>ZkInsertLinkAtSelection<cr>", {desc="[Z]k [I]nsert link"})
   end
 }
