@@ -55,7 +55,7 @@ vim.keymap.set("n", "s", "")
 vim.keymap.set("n", "<leader>a", "q:<up>", {desc="[A]gain"})
 
 -- Duplicate a line and comment out the first line
-vim.keymap.set("n", "yc", "yygccp", {desc="[Y]dupplicate > [C]omment", remap=true})
+vim.keymap.set("n", "yc", "yygccp", {desc="[Y]ank > [C]omment", remap=true})
 
 -- Note that ZZ is save and close (:x) and ZQ is :q!
 -- Write
