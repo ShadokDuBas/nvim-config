@@ -86,6 +86,10 @@ local telsc =   require("plug_list.telesc")
 
 -- Org-mode
 local orgmode = require("plug_list.orgmode")
+-- local orgroam = require("plug_list.orgroam")
+
+-- zk pour manipuler le logiciel zk (remplace orgroam)
+local zk = require("plug_list.zettel")
 
 local vimtex = require("plug_list.vimtex")
 
@@ -130,8 +134,10 @@ require("lazy").setup({
   md,
   snips,
   orgmode,
+  -- orgroam,
   telsc,
   vimtex,
   snacks,
+  zk,
 })
 
