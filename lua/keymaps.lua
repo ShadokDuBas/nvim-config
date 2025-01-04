@@ -39,7 +39,7 @@ vim.keymap.set("n", "<leader>r", [[:%s/\<<C-r><C-w>\>//gc<Left><Left><Left>]],
 
 
 -- zen mode
-vim.keymap.set("n", "<leader>z", 
+vim.keymap.set("n", "<leader>zz", 
   function() 
     local ok, snack = pcall(require, "snacks") 
     if not ok then
