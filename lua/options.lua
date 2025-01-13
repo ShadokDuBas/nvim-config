@@ -17,7 +17,7 @@ vim.opt.textwidth = 80
 
 -- Tabulations shenanigans
 vim.opt.expandtab = true
-vim.opt.tabstop = 2
+vim.opt.tabstop = 8
 vim.opt.shiftwidth = 2
 
 -- Supposed to synchronise
