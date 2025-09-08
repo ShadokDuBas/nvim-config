@@ -119,6 +119,7 @@ local snacks ={
 
 require("lazy").setup({
   kanagwa,
+  md,
   treesitter,
   treesitter_textobjects,
   fugitive,
@@ -131,7 +132,6 @@ require("lazy").setup({
   -- notif,
   pomodoro,
   --nice,
-  md,
   snips,
   orgmode,
   -- orgroam,
