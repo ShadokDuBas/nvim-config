@@ -60,6 +60,8 @@ vim.keymap.set("n", "yc", "yygccp", {desc="[Y]ank > [C]omment", remap=true})
 -- Note that ZZ is save and close (:x) and ZQ is :q!
 -- Write
 vim.keymap.set("n", "ZX", "<cmd>w<CR>", {desc="Save"})
+-- close quickfix window
+vim.keymap.set("n", "Z?", "<cmd>cclose<CR>", {desc="Save"})
 -- Split
 vim.keymap.set("n", "ZS", "<cmd>split<CR>", {desc="Horizontal [S]plit"})
 vim.keymap.set("n", "ZV", "<cmd>vs<CR>", {desc="[V]ertical split"})
