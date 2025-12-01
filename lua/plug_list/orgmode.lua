@@ -13,6 +13,11 @@ return {
           s = { 
             description = "schedule", 
             template = "* %?\n  SCHEDULED: %^{date}T\n  %u"},
+          j = {
+            description = "Journal",
+            target = "~/orgfiles/journal.org",
+            datetree = true,
+          },
         },
       mappings = {
         agenda = {
