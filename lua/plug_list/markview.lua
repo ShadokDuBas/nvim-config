@@ -7,7 +7,8 @@ return {
     require("markview").setup{
       preview = {
         hybrid_modes = {"n"}
-      }
+      },
+      typst = {enable = false}
     }
   end,
 }

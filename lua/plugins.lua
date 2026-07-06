@@ -93,6 +93,8 @@ local zk = require("plug_list.zettel")
 
 local vimtex = require("plug_list.vimtex")
 
+local coqtail = {"whonore/Coqtail"}
+
 -- Dashboard and other bonuses
 local snacks ={
   "folke/snacks.nvim",
@@ -139,5 +141,6 @@ require("lazy").setup({
   vimtex,
   snacks,
   zk,
+  coqtail,
 })
 
