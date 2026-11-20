@@ -111,7 +111,9 @@ local snacks ={
     dashboard = require("plug_list.dashboard"),
     zen = { enabled = true },
     -- show indent line (maybe bugged)
-    indent = {enabled = true}
+    indent = {enabled = true},
+    -- input ("better ui input")
+    input = { enabled = true },
   },
   }
 
@@ -123,7 +125,7 @@ require("lazy").setup({
   kanagwa,
   md,
   treesitter,
-  treesitter_textobjects,
+  -- treesitter_textobjects,
   fugitive,
   focus,
   which_key,

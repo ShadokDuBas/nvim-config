@@ -70,5 +70,31 @@ vim.g.tex_flavor = "latex"
 -- un fichier md.
 vim.opt.conceallevel = 0
 
+-- le ftplugin par defaut d’ocaml fait des mappings gênantes
+vim.g.no_ocaml_maps = true
 
-
+-- démarrer treesitter automatiquement
+vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 
+        "*.sh",
+        "*.bib",
+        "*.c",
+        "*.lisp",
+        "*.fish",
+        "*.java",
+        "*.json",
+        "*.ledger",
+        "*.lua",
+        "*.md",
+        "*.nix",
+        "*.nu",
+        "*.ml",
+        "*.mli",
+        "*.py",
+        "*.rs",
+        "*.toml",
+        "*.typ",
+        "*.yaml",
+        },
+      callback = function() vim.treesitter.start() end,
+})

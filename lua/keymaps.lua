@@ -43,12 +43,24 @@ vim.keymap.set("n", "<leader>zz",
   function() 
     local ok, snack = pcall(require, "snacks") 
     if not ok then
-      vim.notify("erreur dans le module zen :")
+      vim.notify("erreur dans le module snacks :")
       vim.notify(snack)
     else snack.zen.zen()
     end
   end, 
   {desc="toggle zen mode"})
+
+-- terminal
+-- vim.keymap.set("n", "<leader>t", 
+--   function() 
+--     local ok, snack = pcall(require, "snacks") 
+--     if not ok then
+--       vim.notify("erreur dans le module snacks :")
+--       vim.notify(snack)
+--     else snack.terminal()
+--     end
+--   end, 
+--   {desc="terminal"})
 
 vim.keymap.set("n", "s", "")
 
